@@ -19,19 +19,19 @@ class PlaygroundSpec extends Specification {
 
     "shuffle deck with two cards" in {
       val initCardList = List(Card("name", "url2"), Card("name2", "url2"))
-      val playfield = Playfield(0, Player("nick"), initCardList, List(), List())
+      val playfield = Playfield(0, Player("nick","password"), initCardList, List(), List())
       playfield.shuffleDeck()
       playfield.deck shouldNotEqual initCardList
     }
     "shuffle deck with one card" in {
       val initCardList = List(Card("name", "url2"))
-      val playfield = Playfield(0, Player("nick"), initCardList, List(), List())
+      val playfield = Playfield(0, Player("nick","password"), initCardList, List(), List())
       playfield.shuffleDeck()
       playfield.deck shouldEqual initCardList
     }
     "shuffle deck with without cards" in {
       val initCardList = List()
-      val playfield = Playfield(0, Player("nick"), initCardList, List(), List())
+      val playfield = Playfield(0, Player("nick","password"), initCardList, List(), List())
       playfield.shuffleDeck()
       playfield.deck shouldEqual initCardList
     }
@@ -48,7 +48,7 @@ class PlaygroundSpec extends Specification {
     )
     val initZoneCards = List()
     val playfield = Playfield(0,
-      Player("nick"),
+      Player("nick","password"),
       initDeck,
       initHand,
       List(
