@@ -1,0 +1,34 @@
+@(form: Form[(String,String)])(implicit flash: Flash)
+
+@main("Login Sample") {
+
+    <h1>Play! Login Sample - Login</h1>
+
+    <p>Please provide your credentials.</p>
+
+    @helper.form(routes.Authentication.authenticate) {
+
+        @form.globalError.map { error =>
+            <p class="error">
+                @error.message
+            </p>
+        }
+
+        @flash.get("success").map { message =>
+            <p class="success">
+                @message
+            </p>
+        }
+
+        <p>
+            <input name="nickname" placeholder="nickname" id="nickname" value="@form("nickname").value">
+        </p>
+        <p>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </p>
+        <p>
+            <button type="submit" id="loginbutton">Login</button>
+        </p>
+
+    }
+}
