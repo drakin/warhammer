@@ -1,20 +1,19 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
-import play.api.data._
+import model.PlayerService
 import play.api.data.Forms._
+import play.api.data._
+import play.api.mvc._
 import views._
-import model.Player
 
-object Authentication extends Controller{
+object Authentication extends Controller {
 
   val loginForm = Form(
     tuple(
       "nickname" -> text,
       "password" -> text
-    ) verifying ("Invalid username or password", result => result match {
-      case (nickname, password) => Player.authenticate(nickname, password).isDefined
+    ) verifying("Invalid username or password", result => result match {
+      case (nickname, password) => PlayerService.authenticate(nickname, password).isDefined
     })
   )
 

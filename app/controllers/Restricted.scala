@@ -1,6 +1,6 @@
 package controllers
 
-import model.Player
+import model.PlayerService
 import play.api.mvc.Controller
 import views.html
 
@@ -11,11 +11,10 @@ object Restricted extends Controller with Secured {
     */
   def index = IsAuthenticated { username =>
     _ =>
-      Player.findById(username).map { user =>
-        Ok(
-          html.restricted(user)
-        )
-      }.getOrElse(Forbidden)
+      PlayerService.findByUsername(username) match {
+        case Some(x) => Ok(html.restricted(x))
+        case None => Forbidden
+      }
   }
 
 }
